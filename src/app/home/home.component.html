@@ -180,11 +180,42 @@
   <main class="main">
     <div class="content">
       <div class="left-side">
-        
-        <h1>Hello, {{ title }}</h1>
-        <p>Congratulations! Your app is running. 🎉</p>
-  
-        
+        <div>
+          <h1>Bonjour, {{ title }}</h1>
+          <p>Votre application est en cours d'exécution. 🎉</p>
+        </div>
+        <div *ngIf="authService.auth.user$ | async as user">
+          <div>
+            <img
+            [src]="user.picture"
+            alt="Profile picture"
+            class="nav-user-profile rounded-circle"
+            style="width: 75px;"
+          />
+          </div>
+          <div>
+            <ul>
+              <li>{{ user.name }}</li>
+              <li>{{ user.email }}</li>
+            </ul>
+          </div>
+        </div>
+        <div *ngIf="authService.auth.isAuthenticated$ | async; else login">
+          <button 
+          mat-raised-button
+          color="warm" 
+          (click)="authService.auth.logout({ logoutParams: { returnTo: 'http://localhost:4200/login' } })">
+            Se déconnecter
+          </button>
+        </div>
+        <ng-template #login>
+          <div>
+            <a routerLink="/login" routerLinkActive="active">
+              Connecter
+            </a>
+          </div>
+        </ng-template>
+
       </div>
       <div class="divider" role="separator" aria-label="Divider"></div>
       <div class="right-side">

@@ -4,13 +4,12 @@
       fxLayoutAlign="center center"
       fxLayoutGap="10px"
       [formGroup]="loginForm"
-      (ngSubmit)="onSubmit()"
     >
       <mat-form-field>
         <input
           type="email"
           matInput
-          placeholder="Your mail"
+          placeholder="Email"
           formControlName="email"
         />
         <mat-error>Please enter a valid email.</mat-error>
@@ -19,7 +18,7 @@
         <input
           type="password"
           matInput
-          placeholder="Your password"
+          placeholder="Mot de passe"
           formControlName="password"
         />
         <mat-error>Missing password.</mat-error>
@@ -27,9 +26,16 @@
       <button
         mat-raised-button
         color="primary"
-        (click)="auth.loginWithRedirect()"
+        (click)="authService.auth.loginWithRedirect()"
       >
-        Log in with Auth0
+        Authentification
       </button>
+      <button
+      mat-raised-button
+      color="accent"
+      routerLink=""
+    >
+    Entrez sans authentification
+    </button>
     </form>
   </section>
