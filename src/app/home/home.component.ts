@@ -12,7 +12,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './home.component.css'
 })
 export class HomeComponent implements OnDestroy{
-  title = 'my-auth-app-test';
+  title = 'my-auth-app';
   private authSub;
 
   constructor(public authService: AuthenticationService){
